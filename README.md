@@ -8,4 +8,9 @@ pip install plotly_express==0.4.0
 
 #Ejecuta el proyecto
 streamlit run .\main.py --server.port 8888
+
+
+CREDENCIALES AWS
+USUARIO: dtownsen@espol.edu.ec
+CONTRA: Aws2802$$
  
