@@ -14,8 +14,8 @@ if fl is not None:
     st.write(filename)
     df=pd.read_csv(filename,on_bad_lines='skip',encoding="ISO-8859-1")
 else:
-    os.chdir(r"C:\Users\darin\PycharmProjects\DashBoard")
-    df=pd.read_csv(".\Superstore7.csv",on_bad_lines='skip',encoding="ISO-8859-1")
+    os.chdir(r"..\DashBoard")
+    df=pd.read_csv("..\DashBoard\Superstore7.csv",on_bad_lines='skip',encoding="ISO-8859-1")
 
 col1, col2 = st.columns((2))
 df["Order Date"] = pd.to_datetime(df["Order Date"])
