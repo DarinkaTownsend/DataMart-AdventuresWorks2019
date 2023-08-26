@@ -1,33 +1,27 @@
+from s3_files import download_s3_object
 import streamlit as st
 import plotly.express as px
 import pandas as pd
 import os
-import warnings
 import boto3
-from s3_files import download_s3_object
-# Guarda el .csv de la tabla de hechos
-
+import warnings
 
 warnings.filterwarnings('ignore')
 st.set_page_config(page_title="Ventas AdventureWorks",page_icon=":bar_chart:",layout="wide")
 st.title(" :bar_chart: DashBoard AdventureWorks ")
 st.markdown("<style>div.block-container{padding-top:1rem;}</style>",unsafe_allow_html=True)
 
-'''
+# Descarga el .csv de la tabla de hechos de AWS
 bucket = 'adventuretransformado'
 object = 'FACT-AdventureWorks_part00000.csv'
 save_as = 'FACT-AdventureWorks.csv'
-
 download_s3_object(bucket, object, save_as)
 
-
-'''
-
-
-df=pd.read_csv("./FACT-AdventureWorks.csv",on_bad_lines='skip',encoding="ISO-8859-1")
-df2=df.copy()
-df3=df.copy()
-df4=df.copy()
+# Lectura de csv
+df = pd.read_csv("./FACT-AdventureWorks.csv",on_bad_lines='skip',encoding="ISO-8859-1")
+df2 = df.copy()
+df3 = df.copy()
+df4 = df.copy()
 
 st.sidebar.header("Choose your filter: ")
 
