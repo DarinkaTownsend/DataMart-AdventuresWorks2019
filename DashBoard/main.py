@@ -143,15 +143,15 @@ Suscripciones = st.sidebar.multiselect("EmailMarketing", df4["EmailPromotion"].u
 filtered_df5 = df4[df4["EmailPromotion"].isin(Suscripciones)]
 
 with col1:
-    category_df5 = filtered_df5.groupby(by=["Anio"], as_index=False)["TotalDue"].sum()
-    fig5 = px.bar(category_df5, x="Anio", y="TotalDue", text=['{:}'.format(x) for x in category_df5["TotalDue"]],
+    category_df5 = filtered_df5.groupby(by=["Anio"], as_index=False)["OrderQty"].sum()
+    fig5 = px.bar(category_df5, x="Anio", y="OrderQty", text=['{:}'.format(x) for x in category_df5["OrderQty"]],
                  template="seaborn",title="POR AÑO")
     st.plotly_chart(fig5, use_container_width=True, height=200)
     fig5.update_traces(text=filtered_df5["EmailPromotion"], textposition="outside")
 
 with col2:
-    category_df5 = filtered_df5.groupby(by=["Month"], as_index=False)["TotalDue"].sum()
-    fig5 = px.bar(category_df5, x="Month", y="TotalDue", text=['{:}'.format(x) for x in category_df5["TotalDue"]],
+    category_df5 = filtered_df5.groupby(by=["Month"], as_index=False)["OrderQty"].sum()
+    fig5 = px.bar(category_df5, x="Month", y="OrderQty", text=['{:}'.format(x) for x in category_df5["OrderQty"]],
                   template="seaborn",title="POR MES")
     st.plotly_chart(fig5, use_container_width=True, height=200)
     fig5.update_traces(text=filtered_df5["EmailPromotion"], textposition="outside")
@@ -163,15 +163,15 @@ productos = st.sidebar.multiselect("Nombre del Producto", df4["ProductName"].uni
 filtered_df6 = df6[df6["ProductName"].isin(productos)]
 
 with col1:
-    category_df6 = filtered_df6.groupby(by=["Anio"], as_index=False)["TotalDue"].sum()
-    fig6 = px.bar(category_df6, x="Anio", y="TotalDue", text=['{:}'.format(x) for x in category_df6["TotalDue"]],
+    category_df6 = filtered_df6.groupby(by=["Anio"], as_index=False)["OrderQty"].sum()
+    fig6 = px.bar(category_df6, x="Anio", y="OrderQty", text=['{:}'.format(x) for x in category_df6["OrderQty"]],
                  template="seaborn",title="POR AÑO")
     st.plotly_chart(fig6, use_container_width=True, height=200)
     fig6.update_traces(text=filtered_df6["ProductName"], textposition="outside")
 
 with col2:
-    category_df6 = filtered_df6.groupby(by=["Month"], as_index=False)["TotalDue"].sum()
-    fig6 = px.bar(category_df6, x="Month", y="TotalDue", text=['{:}'.format(x) for x in category_df6["TotalDue"]],
+    category_df6 = filtered_df6.groupby(by=["Month"], as_index=False)["OrderQty"].sum()
+    fig6 = px.bar(category_df6, x="Month", y="OrderQty", text=['{:}'.format(x) for x in category_df6["OrderQty"]],
                   template="seaborn",title="POR MES")
     st.plotly_chart(fig6, use_container_width=True, height=200)
     fig6.update_traces(text=filtered_df5["ProductName"], textposition="outside")
