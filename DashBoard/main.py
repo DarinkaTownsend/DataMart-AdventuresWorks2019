@@ -4,17 +4,30 @@ import pandas as pd
 import os
 import warnings
 import boto3
+from s3_files import download_s3_object
+# Guarda el .csv de la tabla de hechos
+
 
 warnings.filterwarnings('ignore')
 st.set_page_config(page_title="Ventas AdventureWorks",page_icon=":bar_chart:",layout="wide")
 st.title(" :bar_chart: DashBoard AdventureWorks ")
 st.markdown("<style>div.block-container{padding-top:1rem;}</style>",unsafe_allow_html=True)
 
+'''
+bucket = 'adventuretransformado'
+object = 'FACT-AdventureWorks_part00000.csv'
+save_as = 'FACT-AdventureWorks.csv'
 
-os.chdir(r"..\DashBoard")
-df=pd.read_csv("..\DashBoard\FACT-AdventureWorks.csv",on_bad_lines='skip',encoding="ISO-8859-1")
+download_s3_object(bucket, object, save_as)
+
+
+'''
+
+
+df=pd.read_csv("./FACT-AdventureWorks.csv",on_bad_lines='skip',encoding="ISO-8859-1")
 df2=df.copy()
 df3=df.copy()
+df4=df.copy()
 
 st.sidebar.header("Choose your filter: ")
 
@@ -64,7 +77,7 @@ st.subheader("Ventas totales realizadas por año por continente")
 col1,col2=st.columns((2))
 filtered_df2 = df2[df2["Continent"].isin(Continent)]
 with col1:
-    category_df2 = filtered_df2.groupby(by=["Anio"], as_index=False)["TotalDue"].sum()
+    category_df2 = filtered_df2.groupby(by=["Anio","Gender"], as_index=False)["TotalDue"].sum()
     fig2 = px.bar(category_df2, x="Anio", y="TotalDue", text=['${:,.0f}'.format(x) for x in category_df2["Anio"]],
                  template="seaborn")
     st.plotly_chart(fig2, use_container_width=True, height=200)
@@ -74,6 +87,8 @@ with col2:
     fig2.update_traces(text=filtered_df2["Continent"], textposition="outside")
     st.plotly_chart(fig2, use_container_width=True)
 
+
+Genero = st.sidebar.multiselect("Selecciona el genero", df2["Gender"].unique())
 
 
 
