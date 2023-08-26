@@ -96,3 +96,4 @@ Genero = st.sidebar.multiselect("Selecciona el genero", df2["Gender"].unique())
 
 
 
+
